@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatos</title>
+</head>
+<body onload="Listar()">
+    <input type="text" id="nome" required/>
+    <input type="text" id="email" required/>
+    <input type="text" id="telefone" required/>
+
+    <button type="button" id='btnCadastrar'>Cadastrar</button>
+    <button type="button" id='btnRemover'>Remover</button>
+
+    <table>
+        <caption>Contatos</caption>
+        <thead>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+        </thead>
+        <tbody id="tabela-lista-corpo">
+            
+        </tbody>
+    </table>   
+
+    <script>
+        
+        let nomes = ['Júlia' , 'André' , 'Camille' ,'Rodrigo']
+        let emails = ['Julia@hotmail.com' , 'Andre@hotmail.com' , 'Camille@hotmail.com' ,'Rodrigo@hotmail.com']
+        let telefones = ['6783473698' , '6783473698' , '6783473698' ,'6783473698']
+
+
+        function Listar(){
+            let Tabela = document.querySelector('#tabela-lista-corpo')
+            Tabela.innerHTML="";
+            
+            //Armazena alinha e a coluna
+            let linha, colunaNome, colunaEmail, colunaTelefone;
+
+            //Percorrengo o array
+            //contato é a referencia do objeto/elemento no array (Nome)
+            nomes.forEach(contato => {
+
+                //Cria os elementos
+               linha = document.createElement('tr');
+               colunaNome = document.createElement('td');
+
+                //Define o nome deles
+                colunaNome.innerText = contato;
+                
+                //Retorno
+                linha.appendChild(colunaNome);
+                Tabela.appendChild(linha);
+
+                });
+
+           emails.forEach(contato => {
+
+                //Cria os elementos
+                
+                linha = document.createElement('tr');
+                colunaEmail = document.createElement('td');
+                
+
+                //Define o nome deles
+                colunaEmail.innerText = contato;
+            
+                //Retorno
+                linha.appendChild(colunaEmail);
+                Tabela.appendChild(linha);
+
+                });
+
+            telefones.forEach(contato => {
+
+                //Cria os elementos
+                linha = document.createElement('tr');
+                colunaTelefone = document.createElement('td');
+
+                //Define o nome deles
+                colunaTelefone.innerText = contato;
+
+                //Retorno
+                linha.appendChild(colunaTelefone);
+                Tabela.appendChild(linha);
+
+                });
+
+        let btnCadastrar = document.querySelector('#btnCadastrar');
+        btnCadastrar.addEventListener('click', cadastrar);
+
+
+            function cadastrar(event){
+                event.preventDefault();
+
+                let Nome = document.querySelector('#nome');
+                let Email = document.querySelector('#email');
+                let Telefone = document.querySelector('#telefone');
+
+                nomes.push(Nome.value);
+                emails.push(Email.value);
+                telefones.push(Telefone.value);
+
+                Listar();
+                alert('Contato cadastrado com sucesso!');
+        
+            }
+
+        let btnRemover = document.querySelector('#btnRemover');
+        btnRemover.addEventListener('click', remover);
+
+
+            function remover(event){
+                event.preventDefault();
+
+                let Email = document.querySelector('#email');
+              
+
+              /* nomes.forEach(contato=>{
+
+                    if(contato == Nome.value){
+
+                    }else{
+                            
+                        }
+
+                }); */
+
+                let index = emails.indexOf(Email.value);
+                console.log(index);
+
+                if(index > -1){
+                    emails.splice(index, 1);
+                    alert ('Contato removido');
+                    Email.value='';
+
+                    Listar();
+                }else{
+                    alert('Contato não encontrado');
+                }
+
+
+                
+
+
+            }
+
+
+        }
+
+        //let Remove = document.querySelector('#btnRemover');
+
+        //Cadastro.addEventListener('click', cadastro);
+
+        /* function cadastro(event){
+            event.preventDefault();
+        
+            let nome = document.querySelector('#nome');
+            let email = document.querySelector('#email');
+            let telefone = document.querySelector('#telefone');
+
+            if ("email".indexOf("@") >= 0) {
+                alert("E-mail não identificado, use como padrão: seuEmail@hotmail.com");
+            }else{
+                
+                 alert("Cadastrado com sucesso");
+
+            }
+
+            
+            let Informacao ={
+                nome : nome.Value,
+                telefone : telefone.Value,
+                email : email.Value
+            }
+
+            console.log(Informacao);
+
+            //postAPI
+            console.log(JSON.stringify(Informacao));
+
+            contatos.push(contato);
+
+            alert('Contato cadastrado');
+
+
+
+
+        }
+        */
+
+
+
+    </script>
+</body>
+</html>
